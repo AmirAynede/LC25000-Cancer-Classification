@@ -303,7 +303,7 @@ The script version is useful for automated runs or when working outside a note
 
 If you prefer running the LC25000 cancer classification workflow step by step in a cloud environment (no local setup required), use the dedicated Google Colab notebook below:
 
-▶[Open the LC25000 Classification Colab Notebook](https://colab.research.google.com/drive/1J3jZgfGz3SBH9HkTRtAZb2LEthYnC_Os)
+▶[Open the LC25000 Classification Colab Notebook](https://colab.research.google.com/drive/1J3jZgfGz3SBH9HkTRtAZb2LEthYnC_Os?usp=sharing)
 
 Features:
 
