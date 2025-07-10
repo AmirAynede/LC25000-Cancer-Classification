@@ -1,6 +1,6 @@
 # 🧬 LC25000 Cancer Classification - Full ML Pipeline
 
-Welcome to the LC25000 Cancer Image Classification project! This repository provides a complete, reproducible pipeline for training, evaluating, and interpreting a deep learning model on the LC25000 histopathology dataset.
+This repository provides a complete, reproducible pipeline for training, evaluating, and interpreting a deep learning model on the LC25000 histopathology dataset.
 
 ---
 
