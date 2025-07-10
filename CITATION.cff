@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "LC25000 Cancer Classification"
+authors:
+  - family-names: Aynede
+    given-names: Amir
+    orcid: https: https://orcid.org/0009-0009-0550-4615
+    affiliation: University of Bologna
+date-released: 2025-07-10
+version: 1.0.0
+license: CC-BY-NC-SA-4.0
+repository-code: https://github.com/AmirAynede/LC25000-Cancer-Classification
+url: https://github.com/AmirAynede/LC25000-Cancer-Classification
+abstract: "A deep learning pipeline for classifying histopathological images of lung and colon cancer using the LC25000 dataset. This project includes data preprocessing, model training, evaluation, and visualization tools."
+keywords:
+  - deep learning
+  - histopathology
+  - cancer classification
+  - LC25000
+  - medical imaging
