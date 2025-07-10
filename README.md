@@ -1,5 +1,12 @@
 # 🧬 LC25000 Cancer Classification - Full ML Pipeline
 
+[![Notebook](https://img.shields.io/badge/notebook-ipynb-green?style=flat-square)](https://github.com/AmirAynede/LC25000-Cancer-Classification/tree/main/notebook)
+[![Scripts](https://img.shields.io/badge/scripts-python-blue?style=flat-square)](https://github.com/AmirAynede/LC25000-Cancer-Classification/tree/main/scripts)
+[![Report](https://img.shields.io/badge/report-pdf-red?style=flat-square)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/LC25000_Cancer_Classification_Report.pdf)
+[![Citation](https://img.shields.io/badge/citation-CFF-white?style=flat-square)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/CITATION.cff)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-orange?style=flat-square)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/LICENSE.md)
+[![Requirements](https://img.shields.io/badge/requirements-necessary-darkgreen?style=flat-square)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/requirements.txt)
+
 This repository provides a complete, reproducible pipeline for training, evaluating, and interpreting a deep learning model on the LC25000 histopathology dataset.
 
 ---
