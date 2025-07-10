@@ -299,6 +299,34 @@ The script version is useful for automated runs or when working outside a note
 - All outputs are saved in the appropriate folders for easy access and sharing.
 
 ---
+## Run the Project on Google Colab
+
+If you prefer running the LC25000 cancer classification workflow step by step in a cloud environment (no local setup required), use the dedicated Google Colab notebook below:
+
+▶Open the LC25000 Classification Colab Notebook
+
+Features:
+
+   No installation needed
+   
+   GPU support available on Colab
+   
+   All steps: dataset download, preprocessing, model training, evaluation, Grad-CAM
+
+How to Use:
+
+   Click the link to open the notebook in Google Colab.
+   
+   Follow each cell in order, from environment setup to final visualization.
+   
+   Upload your kaggle.json when prompted to enable dataset download from Kaggle.
+   
+   Run all cells to reproduce the results and visualizations.
+   
+
+   Make sure you are signed in to your Google account to use Colab, and enable GPU under Runtime > Change runtime type > Hardware Accelerator.
+
+---
 
 ## Citation
 If you use this pipeline, please cite the original LC25000 dataset and this repository.
