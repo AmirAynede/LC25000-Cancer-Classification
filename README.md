@@ -1,11 +1,12 @@
 # LC25000 Cancer Classification - Full ML Pipeline
 
-[![Notebook](https://img.shields.io/badge/notebook-ipynb-green?style=flat-square)](https://github.com/AmirAynede/LC25000-Cancer-Classification/tree/main/notebook)
-[![Scripts](https://img.shields.io/badge/scripts-python-blue?style=flat-square)](https://github.com/AmirAynede/LC25000-Cancer-Classification/tree/main/scripts)
-[![Report](https://img.shields.io/badge/report-pdf-red?style=flat-square)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/LC25000_Cancer_Classification_Report.pdf)
-[![Citation](https://img.shields.io/badge/citation-CFF-white?style=flat-square)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/CITATION.cff)
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-orange?style=flat-square)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/LICENSE.md)
-[![Requirements](https://img.shields.io/badge/requirements-necessary-darkgreen?style=flat-square)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/requirements.txt)
+[![Notebook](https://img.shields.io/badge/Notebook-ipynb-green?style=flat-square&logo=jupyter&logoColor=white)](https://github.com/AmirAynede/LC25000-Cancer-Classification/tree/main/notebook)
+[![Scripts](https://img.shields.io/badge/Scripts-Python-blue?style=flat-square&logo=python&logoColor=white)](https://github.com/AmirAynede/LC25000-Cancer-Classification/tree/main/scripts)
+[![Report](https://img.shields.io/badge/Report-PDF-red?style=flat-square&logo=readthedocs&logoColor=white)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/LC25000_Cancer_Classification_Report.pdf)
+[![Citation](https://img.shields.io/badge/Citation-CFF-lightgrey?style=flat-square&logo=academia&logoColor=black)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/CITATION.cff)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC--BY--NC--SA--4.0-orange?style=flat-square&logo=creativecommons&logoColor=white)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/LICENSE.md)
+[![Requirements](https://img.shields.io/badge/Requirements-Necessary-darkgreen?style=flat-square&logo=dependabot&logoColor=white)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/requirements.txt)
+[![Google Colab](https://img.shields.io/badge/Google_Colab-Run_Notebook-yellow?style=flat-square&logo=googlecolab&logoColor=white)](https://colab.research.google.com/drive/1J3jZgfGz3SBH9HkTRtAZb2LEthYnC_Os?usp=sharing)
 
 ![Project Cover](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/COVER.PNG?raw=true)
 
