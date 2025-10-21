@@ -13,7 +13,7 @@ License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
 
 If you utilize this project, in whole or in part, for academic purposes such as publications, theses, presentations, or derivative educational materials, please cite the author as follows:()
 
-Aynede A. LC25000 Cancer Classification: Deep Learning Pipeline for Histopathology Image Analysis. University of Bologna, 2025. GitHub: https://github.com/AmirAynede/LC25000-Cancer-Classification()
+Aynede A. LC25000 Cancer Classification: Deep Learning Pipeline for Histopathology Image Analysis. University of Bologna, 2025. GitHub: https://github.com/AmirAynede/LC25000-Cancer-Classification
 
 For citation assistance, feel free to open an issue on the repository.()
 
