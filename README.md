@@ -13,298 +13,196 @@
 This repository provides a complete, reproducible pipeline for training, evaluating, and interpreting a deep learning model on the LC25000 histopathology dataset.
 
 ---
+# An End-to-End Deep Learning Pipeline for Automated Histopathology Image Classification
 
-## Table of Contents
-
-0. Project Directory Setup
-1. Environment Setup
-2. Data Download & Extraction
-   - 2.1 Set Working Directory
-   - 2.2 Place kaggle.json
-   - 2.3 Download and Extract Dataset
-3. Dataset Splitting
-4. Model Summary
-5. Training
-6. Plotting Training Metrics
-7. Animated Training Curves
-8. Evaluation on Test Set
-9. Visualize Predictions as an Image Grid
-10. Visualize Misclassifications
-11. Grad-CAM Visualization
-12. Grad-CAM Grid (side-by-side)
-
----
-
-## 0. Project Directory Setup
-**Purpose:** Ensure all required folders exist so scripts and outputs work without errors.
-
-**Process:**
-- Run the setup cell in the notebook or execute the following in Python:
-  ```python
-  import os
-  folders = ['data', 'notebooks', 'outputs', 'results', 'sample_images', 'saved_models', 'scripts']
-  for folder in folders:
-      os.makedirs(folder, exist_ok=True)
-  ```
-
-**Result:**
-- Folders for data, outputs, results, models, scripts, etc. are created.
-
----
-
-## 1. Environment Setup
-**Purpose:** Install all required Python dependencies.
-
-**Process:**
-- Run:
-  ```bash
-  pip install -r requirements.txt
-  ```
-- For M1/M2 Mac GPU support, run:
-  ```bash
-  pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
-  ```
-
-**Result:**
-- All necessary packages are installed for the pipeline to run.
-
----
-
-## 2. Data Download & Extraction (Kaggle)
-
-### 2.1 Set Working Directory
-**Purpose:** Ensure your notebook or script is running from the project root so all file paths work correctly.
-
-**Instructions:**
-- In your notebook, run:
-  ```python
-  import os
-  os.chdir('/.../.../cancer_clasification_lc25000')
-  print("Current working directory:", os.getcwd())
-  ```
-- Replace `/.../.../cancer_clasification_lc25000` with the actual path to your project root if needed.
-
----
-
-### 2.2 Place kaggle.json
-**Purpose:** Provide your Kaggle API credentials for dataset download.
-
-**Instructions:**
-- Go to [Kaggle Account Settings](https://www.kaggle.com/settings/account) and click "Create New API Token" to download `kaggle.json`.
-- Place `kaggle.json` in your project root directory (the same directory as your notebook or script).
-
----
-
-### 2.3 Download and Extract Dataset
-**Purpose:** Download the LC25000 dataset from Kaggle and extract it for use in the pipeline.
-
-**Instructions:**
-- Install the Kaggle CLI:
-  ```bash
-  pip install kaggle
-  ```
-- Move `kaggle.json` to the correct location and set permissions:
-  ```bash
-  mkdir -p ~/.kaggle
-  mv kaggle.json ~/.kaggle/kaggle.json
-  chmod 600 ~/.kaggle/kaggle.json
-  ```
-- Download and unzip the dataset:
-  ```bash
-  mkdir -p data
-  kaggle datasets download andrewmvd/lung-and-colon-cancer-histopathological-images -p data/
-  unzip -q data/lung-and-colon-cancer-histopathological-images.zip -d data/Lung_and_Colon_Cancer
-  ```
-- **Skip if you already have `data/Lung_and_Colon_Cancer/`.**
+## Overview
+This project presents a complete and reproducible deep learning pipeline for automated cancer subtype classification using the LC25000 histopathology dataset.
 
-**Result:**
-- Raw images are available in `data/Lung_and_Colon_Cancer/`.
+It integrates all essential stages—from data preprocessing and model training to evaluation, visualization, and explainability—into a modular, transparent, and scalable framework built with PyTorch.
 
-**Troubleshooting:**
-- If you get a `FileNotFoundError` for `kaggle.json`, make sure your working directory is set to your project root and that `kaggle.json` is present there before running the commands above.
+The pipeline classifies five histopathological tissue classes:
 
----
+Colon Adenocarcinoma `(colon_aca)`
 
-## 3. Dataset Splitting
-**Purpose:** Split the raw dataset into train/val/test sets for reproducible experiments.
+Benign Colon Tissue `(colon_n)`
 
-**Process:**
-- Run:
-  ```bash
-  python -m scripts.split_dataset
-  ```
-- This creates `data/lc25000_split/` with `train/`, `val/`, and `test/` subfolders.
+Lung Adenocarcinoma `(lung_aca)`
 
-**Result:**
-- Data is organized for training, validation, and testing.
+Lung Squamous Cell `Carcinoma (lung_scc)`
 
----
+Benign Lung Tissue `(lung_n)`
 
-## 4. Model Summary
-**Purpose:** Review the architecture, output shapes, and parameter counts of the model.
 
-**Process:**
-- Run:
-  ```bash
-  python -m scripts.model_summary --num_classes 5 --input_size 1 3 224 224
-  ```
-- Adjust arguments if your data/model shape is different.
+## Abstract
+Manual histopathology examination remains the gold standard in cancer diagnosis but is time-consuming and subjective.
+This project leverages transfer learning with a fine-tuned ResNet18 model to automate and standardize diagnostic workflows.
+Interpretability is achieved via Grad-CAM visualizations, highlighting diagnostically relevant regions.
+The pipeline achieved near-perfect accuracy (≈1.00) across all classes, demonstrating strong generalization, transparency, and clinical relevance
 
-**Result:**
-- A detailed summary table of the model is printed.
+## Pipeline Structure
+| Stage | Description                                |
+| ----- | ------------------------------------------ |
+| 1     | Project Directory Setup                    |
+| 2     | Environment Setup                          |
+| 3     | Dataset Download & Extraction (via Kaggle) |
+| 4     | Dataset Splitting (train / val / test)     |
+| 5     | Model Summary                              |
+| 6     | Training                                   |
+| 7     | Plot Training Metrics                      |
+| 8     | Animated Training Curves                   |
+| 9     | Evaluation on Test Set                     |
+| 10     | Visualize Predictions Grid                |
+| 11    | Visualize Misclassifications               |
+| 12    | Grad-CAM Visualization                     |
+| 13    | Grad-CAM Grid Comparison                   |
 
----
+Each step is executable as a standalone script or interactively via the provided Jupyter notebook `(ML_Pipeline.ipynb)`.
 
-## 5. Training
-**Purpose:** Train the ResNet18 model on the LC25000 dataset.
+## 1-3. Environment & Data Setup
+Directory Initialization
 
-**Process:**
-- Run:
-  ```bash
-  python -m scripts.train
-  ```
-- The script will save the best model to `saved_models/` and training metrics to `results/`.
+```python
+import os
+folders = ['data', 'notebooks', 'outputs', 'results', 'sample_images', 'saved_models', 'scripts']
+for folder in folders:
+    os.makedirs(folder, exist_ok=True)
+```
+Environment Installation
 
-**Result:**
-- Trained model weights and training metrics are saved for later use.
+`pip install -r requirements.txt`
 
----
+For M1/M2 Mac GPU support
 
-## 6. Plotting Training Metrics
-**Purpose:** Visualize loss and accuracy curves to monitor training progress.
+`pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu`
 
-**Process:**
-- Run:
-  ```bash
-  python -m scripts.plot --json_path results/training_metrics_<timestamp>.json
-  ```
-- Replace `<timestamp>` with your actual metrics file.
+Dataset Download (Kaggle)
 
-**Result:**
-- Plots are saved in `outputs/` for loss and accuracy.
+`pip install kaggle
+mkdir -p ~/.kaggle && mv kaggle.json ~/.kaggle/ && chmod 600 ~/.kaggle/kaggle.json
+kaggle datasets download andrewmvd/lung-and-colon-cancer-histopathological-images -p data/
+unzip -q data/lung-and-colon-cancer-histopathological-images.zip -d data/Lung_and_Colon_Cancer`
 
----
+## 4–9. Training & Evaluation
 
-## 7. Animated Training Curves
-**Purpose:** See an animated visualization of how loss and accuracy evolve over epochs.
+Dataset Splitting
 
-**Process:**
-- Run:
-  ```bash
-  python -m scripts.animate_training_curves
-  ```
-- The latest metrics file is used automatically.
+`python -m scripts.split_dataset`
 
-- This step animates the training and validation loss and accuracy curves over epochs, so you can visually see how your model improves during training.
-How to use:
-You can either:
+Model Summary
 
-Run the Python script directly (in a terminal):
-python -m scripts.animate_training_curves
-This will display the animation in a separate window (best for local use).
+`python -m scripts.model_summary --num_classes 5 --input_size 1 3 224 224`
 
-OR
+Training
 
-Copy and run the provided code cell in your notebook to see the animation inline in the notebook output (recommended for Jupyter/Colab).
+python -m scripts.train
 
-Tip:
+Note: Saves best model weights in saved_models/ and metrics in results/.
 
-The notebook cell version is best for interactive exploration.
-The script version is useful for automated runs or when working outside a notebook.
+Plot & Animate Training
 
-**Result:**
-- An animation of the training curves is displayed.
+`python -m scripts.plot`
 
----
+`python -m scripts.animate_training_curves`
 
-## 8. Evaluation on Test Set
-**Purpose:** Evaluate the trained model on the test set and save detailed results.
+Evaluation on Test Set
 
-**Process:**
-- Run:
-  ```bash
-  python -m scripts.evaluate_on_test
-  ```
-- Outputs:
-  - `outputs/classification_report.txt`: Precision, recall, F1-score per class
-  - `outputs/confusion_matrix.png`: Confusion matrix plot
-  - `outputs/test_predictions.csv`: Per-image predictions (filename, true label, predicted label)
+`python -m scripts.evaluate_on_test`
 
-**Result:**
-- Quantitative evaluation and per-image predictions for further analysis.
+Outputs (saved automatically):
 
----
+| File                        | Description           | Location   |
+| --------------------------- | --------------------- | ---------- |
+| `classification_report.txt` | Precision, Recall, F1 | `results/` |
+| `confusion_matrix.png`      | Confusion matrix      | `outputs/` |
+| `test_predictions.csv`      | Per-image predictions | `results/` |
 
-## 9. Visualize Predictions as an Image Grid
-**Purpose:** Visually inspect a random sample of test predictions.
+## 10–13. Visualization & Explainability
 
-**Process:**
-- Run:
-  ```bash
-  python -m scripts.visualize_predictions --csv_path outputs/test_predictions.csv --n_images 9 --cols 3 --output_path outputs/prediction_grid.png
-  ```
-- Adjust `--n_images` and `--cols` as desired.
+Predictions Grid
 
-**Result:**
-- A grid of test images with true and predicted labels is displayed and saved.
+`python -m scripts.visualize_predictions --csv_path results/test_predictions.csv --n_images 9 --cols 3 --output_path outputs/prediction_grid.png`
 
----
+Misclassifications Grid
 
-## 10. Visualize Misclassifications
-**Purpose:** Focus on and analyze the images the model got wrong.
+`python -m scripts.visualize_misclassifications --csv_path results/test_predictions.csv --n_images 9 --cols 3 --output_path outputs/misclassified_grid.png`
 
-**Process:**
-- Run:
-  ```bash
-  python -m scripts.visualize_misclassifications --csv_path outputs/test_predictions.csv --n_images 9 --cols 3 --output_path outputs/misclassified_grid.png
-  ```
+Grad-CAM (Single Image)
 
-**Result:**
-- A grid of misclassified images is displayed and saved for error analysis.
+`python -m scripts.gradcam --image_path <path_to_image> --model_path <path_to_model>`
 
----
+Grad-CAM Grid
 
-## 11. Grad-CAM Visualization
-**Purpose:** Interpret model predictions by visualizing which parts of the image influenced the decision.
+`python -m scripts.visualize_gradcam_grid --csv_path results/test_predictions.csv --model_path <path_to_model> --n_images 4 --cols 2 --only_misclassified --output_path outputs/gradcam_grid.png`
 
-**Process:**
-- Run:
-  ```bash
-  python -m scripts.gradcam --image_path <path_to_image> --model_path <path_to_model>
-  ```
-- Replace `<path_to_image>` and `<path_to_model>` as needed.
+## Directory Structure
 
-**Result:**
-- Grad-CAM heatmap is saved in `outputs/` for the selected image.
+LC25000-Cancer-Classification/
 
----
+```bash
+│
+├── data/                     # Raw + split datasets
+├── notebooks/                # Jupyter notebooks
+├── scripts/                  # Modular Python scripts
+├── results/                  # Metrics, CSVs, and reports
+├── outputs/                  # Visual artifacts (plots, Grad-CAMs, confusion matrices)
+├── saved_models/             # Trained model weights
+└── requirements.txt
+```
 
-## 12. Grad-CAM Grid (side-by-side)
-**Purpose:** Compare original images and Grad-CAM heatmaps for a set of (optionally misclassified) images.
+## Results Summary
 
-**Process:**
-- Run:
-  ```bash
-  python -m scripts.visualize_gradcam_grid --csv_path outputs/test_predictions.csv --model_path <path_to_model> --n_images 4 --cols 2 --only_misclassified --output_path outputs/gradcam_grid.png
-  ```
-- Adjust arguments as needed.
+| Class                        | Precision |   Recall  |  F1-score | Support |
+| :--------------------------- | :-------: | :-------: | :-------: | :-----: |
+| Colon Adenocarcinoma         |    1.00   |    1.00   |    1.00   |    73   |
+| Benign Colon Tissue          |    1.00   |    1.00   |    1.00   |    85   |
+| Lung Adenocarcinoma          |    1.00   |    0.98   |    0.99   |    63   |
+| Benign Lung Tissue           |    1.00   |    1.00   |    1.00   |    76   |
+| Lung Squamous Cell Carcinoma |    0.99   |    1.00   |    0.99   |    78   |
+| **Overall Accuracy**         | **≈1.00** | **≈1.00** | **≈1.00** |   375   |
 
-**Result:**
-- A grid of original and Grad-CAM images is displayed and saved for qualitative analysis.
+Model: ResNet18 (fine-tuned)
 
----
+Optimizer: AdamW, LR = 1e-3
 
-## Reproducibility & Tips
-- Always run the steps in order for a clean workflow.
-- If you change the dataset or scripts, re-run the relevant steps.
-- All outputs are saved in the appropriate folders for easy access and sharing.
+Hardware: NVIDIA T4 GPU (Google Colab)
 
----
+Training Epochs: 30 (early stopping around epoch 26)
+
+
+## Key Features:
+
+Reproducible pipeline — modular scripts, deterministic splits, and CI support
+
+Explainable AI — Grad-CAM overlays highlight clinically meaningful regions
+
+EDA-driven design — brightness, class balance, and augmentation verified
+
+Comparative models — ResNet18, ResNet34, EfficientNet-B0
+
+High interpretability — model attention aligns with diagnostic tissue structures
+
+## Limitations & Future Work
+LC25000 consists of cropped patches, not full whole-slide images (WSIs).
+
+Future extensions include:
+
+Whole-slide image aggregation (WSI-level classification)
+
+Domain adaptation and stain normalization
+
+Multi-institutional data testing
+
+Uncertainty estimation and model calibration
+
+Deployment via Flask/FastAPI with real-time Grad-CAM support
+
+
+
 ## Run the Project on Google Colab
 
 If you prefer running the LC25000 cancer classification workflow step by step in a cloud environment (no local setup required), use the dedicated Google Colab notebook below:
 
-▶[Open the LC25000 Classification Colab Notebook](https://colab.research.google.com/drive/1J3jZgfGz3SBH9HkTRtAZb2LEthYnC_Os?usp=sharing)
+▶[Open the LC25000 Classification Colab Notebook](https://colab.research.google.com/drive/17j1wBcvBr9qrTg_jWuEQdglIxgAaBuBc?usp=sharing)
 
 Features:
 
