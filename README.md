@@ -1,6 +1,16 @@
-# 🧬 LC25000 Cancer Classification - Full ML Pipeline
+# LC25000 Cancer Classification - Full ML Pipeline
 
-Welcome to the LC25000 Cancer Image Classification project! This repository provides a complete, reproducible pipeline for training, evaluating, and interpreting a deep learning model on the LC25000 histopathology dataset.
+[![Notebook](https://img.shields.io/badge/Notebook-ipynb-green?style=flat-square&logo=jupyter&logoColor=white)](https://github.com/AmirAynede/LC25000-Cancer-Classification/tree/main/notebook)
+[![Scripts](https://img.shields.io/badge/Scripts-Python-blue?style=flat-square&logo=python&logoColor=white)](https://github.com/AmirAynede/LC25000-Cancer-Classification/tree/main/scripts)
+[![Report](https://img.shields.io/badge/Report-PDF-red?style=flat-square&logo=readthedocs&logoColor=white)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/LC25000_Cancer_Classification_Report.pdf)
+[![Citation](https://img.shields.io/badge/Citation-CFF-lightgrey?style=flat-square&logo=academia&logoColor=black)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/CITATION.cff)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC--BY--NC--SA--4.0-orange?style=flat-square&logo=creativecommons&logoColor=white)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/LICENSE.md)
+[![Requirements](https://img.shields.io/badge/Requirements-Necessary-darkgreen?style=flat-square&logo=dependabot&logoColor=white)](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/requirements.txt)
+[![Google Colab](https://img.shields.io/badge/Google_Colab-Run_Notebook-yellow?style=flat-square&logo=googlecolab&logoColor=white)](https://colab.research.google.com/drive/1J3jZgfGz3SBH9HkTRtAZb2LEthYnC_Os?usp=sharing)
+
+![Project Cover](https://github.com/AmirAynede/LC25000-Cancer-Classification/blob/main/COVER.PNG?raw=true)
+
+This repository provides a complete, reproducible pipeline for training, evaluating, and interpreting a deep learning model on the LC25000 histopathology dataset.
 
 ---
 
@@ -288,6 +298,34 @@ The script version is useful for automated runs or when working outside a note
 - Always run the steps in order for a clean workflow.
 - If you change the dataset or scripts, re-run the relevant steps.
 - All outputs are saved in the appropriate folders for easy access and sharing.
+
+---
+## Run the Project on Google Colab
+
+If you prefer running the LC25000 cancer classification workflow step by step in a cloud environment (no local setup required), use the dedicated Google Colab notebook below:
+
+▶[Open the LC25000 Classification Colab Notebook](https://colab.research.google.com/drive/1J3jZgfGz3SBH9HkTRtAZb2LEthYnC_Os?usp=sharing)
+
+Features:
+
+   No installation needed
+   
+   GPU support available on Colab
+   
+   All steps: dataset download, preprocessing, model training, evaluation, Grad-CAM
+
+How to Use:
+
+   Click the link to open the notebook in Google Colab.
+   
+   Follow each cell in order, from environment setup to final visualization.
+   
+   Upload your kaggle.json when prompted to enable dataset download from Kaggle.
+   
+   Run all cells to reproduce the results and visualizations.
+   
+
+   Make sure you are signed in to your Google account to use Colab, and enable GPU under Runtime > Change runtime type > Hardware Accelerator.
 
 ---
 
