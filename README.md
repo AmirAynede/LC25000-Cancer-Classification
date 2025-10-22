@@ -69,11 +69,15 @@ for folder in folders:
 ```
 Environment Installation
 
-`pip install -r requirements.txt`
+```
+pip install -r requirements.txt
+```
 
 For M1/M2 Mac GPU support
 
-`pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu`
+```
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
+```
 
 Dataset Download (Kaggle)
 
@@ -88,15 +92,21 @@ unzip -q data/lung-and-colon-cancer-histopathological-images.zip -d data/Lung_an
 
 Dataset Splitting
 
-`python -m scripts.split_dataset`
+```
+python -m scripts.split_dataset
+```
 
 Model Summary
 
-`python -m scripts.model_summary --num_classes 5 --input_size 1 3 224 224`
+```
+python -m scripts.model_summary --num_classes 5 --input_size 1 3 224 224
+```
 
 Training
 
+```
 python -m scripts.train
+```
 
 Note: Saves best model weights in saved_models/ and metrics in results/.
 
@@ -109,7 +119,9 @@ python -m scripts.animate_training_curves
 
 Evaluation on Test Set
 
-`python -m scripts.evaluate_on_test`
+```
+python -m scripts.evaluate_on_test
+```
 
 Outputs (saved automatically):
 
@@ -123,7 +135,9 @@ Outputs (saved automatically):
 
 Predictions Grid
 
-`python -m scripts.visualize_predictions --csv_path results/test_predictions.csv --n_images 9 --cols 3 --output_path outputs/prediction_grid.png`
+```
+python -m scripts.visualize_predictions --csv_path results/test_predictions.csv --n_images 9 --cols 3 --output_path outputs/prediction_grid.png
+```
 
 Misclassifications Grid
 
@@ -133,7 +147,9 @@ python -m scripts.visualize_misclassifications --csv_path results/test_predictio
 
 Grad-CAM (Single Image)
 
-`python -m scripts.gradcam --image_path <path_to_image> --model_path <path_to_model>`
+```
+python -m scripts.gradcam --image_path <path_to_image> --model_path <path_to_model>
+```
 
 Grad-CAM Grid
 
