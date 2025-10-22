@@ -77,10 +77,12 @@ For M1/M2 Mac GPU support
 
 Dataset Download (Kaggle)
 
-`pip install kaggle
+```
+pip install kaggle
 mkdir -p ~/.kaggle && mv kaggle.json ~/.kaggle/ && chmod 600 ~/.kaggle/kaggle.json
 kaggle datasets download andrewmvd/lung-and-colon-cancer-histopathological-images -p data/
-unzip -q data/lung-and-colon-cancer-histopathological-images.zip -d data/Lung_and_Colon_Cancer`
+unzip -q data/lung-and-colon-cancer-histopathological-images.zip -d data/Lung_and_Colon_Cancer
+```
 
 ## 4–9. Training & Evaluation
 
@@ -100,9 +102,10 @@ Note: Saves best model weights in saved_models/ and metrics in results/.
 
 Plot & Animate Training
 
-`python -m scripts.plot`
-
-`python -m scripts.animate_training_curves`
+```
+python -m scripts.plot
+python -m scripts.animate_training_curves
+```
 
 Evaluation on Test Set
 
@@ -124,7 +127,9 @@ Predictions Grid
 
 Misclassifications Grid
 
-`python -m scripts.visualize_misclassifications --csv_path results/test_predictions.csv --n_images 9 --cols 3 --output_path outputs/misclassified_grid.png`
+```
+python -m scripts.visualize_misclassifications --csv_path results/test_predictions.csv --n_images 9 --cols 3 --output_path outputs/misclassified_grid.png
+```
 
 Grad-CAM (Single Image)
 
@@ -132,7 +137,9 @@ Grad-CAM (Single Image)
 
 Grad-CAM Grid
 
-`python -m scripts.visualize_gradcam_grid --csv_path results/test_predictions.csv --model_path <path_to_model> --n_images 4 --cols 2 --only_misclassified --output_path outputs/gradcam_grid.png`
+```
+python -m scripts.visualize_gradcam_grid --csv_path results/test_predictions.csv --model_path <path_to_model> --n_images 4 --cols 2 --only_misclassified --output_path outputs/gradcam_grid.png
+```
 
 ## Directory Structure
 
